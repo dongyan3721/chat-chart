@@ -1,0 +1,45 @@
+.markdown-body{
+  color: #fafafa;
+  //background-color: #65a665;
+  padding: 10px 20px;
+  .code-block {
+    color: #fafafa;
+
+    &-wrapper {
+      position: relative;
+      padding-top: 24px;
+      background-color: #010101;
+      color: #bfbfbf;
+      border-radius: 10px;
+    }
+
+    &-header {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b3b3b3;
+      background-color: #606266;
+      &__copy{
+        cursor: pointer;
+        margin-left: 0.5rem;
+        user-select: none;
+        &:hover {
+          color: #cccccc;
+        }
+      }
+      &__lang{
+
+      }
+    }
+  }
+}
+
+.plain-text-body{
+  padding: 10px 20px;
+  color: #fafafa;
+}
