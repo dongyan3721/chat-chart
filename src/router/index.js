@@ -6,12 +6,12 @@ const routes = [
     },
     {
         path: '/',
-        redirect: '/chat'
+        redirect: '/preview'
     },
     {
         path: '/preview',
         name: 'preview',
-        component: ()=>import('@/view/components/KnowledgeMap.vue')
+        component: ()=>import('@/components/echarts/DailyHumberIntakeLinePieChart.vue')
     }
 ];
 

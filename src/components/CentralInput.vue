@@ -24,7 +24,7 @@ const triggerSearch = (ev)=>{
 <style scoped>
 .input-group{
   height: 38px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 -2px 4px rgba(255, 255, 255, 0.5);;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 -2px 4px rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   flex-direction: row;

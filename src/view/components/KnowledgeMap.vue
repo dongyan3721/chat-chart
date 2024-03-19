@@ -45,7 +45,11 @@ export default {
   },
   methods: {
     randomColor () {
-      const colors = ['#F4AB87', '#EEC88D', '#76CADF', '#97DA9D', '#88DCD8', '#FB7F89', '#F0E403', '#F576BE', '#ACADFF', '#7EC3FB', '#D0DB02', '#C07B11', '#00ACC2', '#2AAD41', '#A59D00', '#EB4747', '#CD0EBD', '#DE3997']
+      const colors = ['#F4AB87', '#EEC88D', '#76CADF', '#97DA9D',
+        '#88DCD8', '#FB7F89', '#F0E403', '#F576BE',
+        '#ACADFF', '#7EC3FB', '#D0DB02', '#C07B11',
+        '#00ACC2', '#2AAD41', '#A59D00', '#EB4747',
+        '#CD0EBD', '#DE3997']
       return colors[Math.floor(Math.random() * colors.length)]
     },
     initD3 () {

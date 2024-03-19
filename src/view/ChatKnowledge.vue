@@ -260,9 +260,11 @@ let init = ref(false)
 .welcome .ai-self-introduction{
   color: #f9f9f9;
   font-size: 64px;
+  text-shadow: 1px 1px 1px #888, -1px -1px 1px #888;
 }
 .welcome .ai-enquiry{
   font-size: 56px;
   color: #f9f9f9;
+  text-shadow: 1px 1px 1px #888, -1px -1px 1px #888;
 }
 </style>
