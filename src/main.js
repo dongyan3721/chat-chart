@@ -8,6 +8,7 @@ import 'bootstrap'
 import $ from 'jquery'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import 'vue-cropper/dist/index.css'
 
 
 const app = createApp(App)
