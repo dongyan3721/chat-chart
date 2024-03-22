@@ -13,7 +13,7 @@
 import * as d3 from 'd3'
 import {generateUUID} from "@/utils/id.js";
 import {calculateHash} from "@/utils/string.js";
-import {getKnowledgeFromOwnThinking} from "@/web-api/knowledgemap.js";
+import {getKnowledgeFromOwnThinking} from "@/web-api/knowledge-map.js";
 import {ElMessage} from "element-plus";
 export default {
   data () {

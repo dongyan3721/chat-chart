@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap'
 import $ from 'jquery'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'vue-cropper/dist/index.css'
 
 
@@ -19,10 +18,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 // 集成element-plus
 app.use(ElementPlus)
-//国际化
-app.use(ElementPlus, {
-    locale: zhCn,
-})
 // 集成vue-router
 app.use(router)
 // 集成jQuery

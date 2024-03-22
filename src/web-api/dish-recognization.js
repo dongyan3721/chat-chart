@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {ElMessage} from "element-plus";
 
-axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
 
 const client = axios.create({
     timeout: 1000
@@ -29,6 +29,14 @@ function tansParams(params) {
     return result
 }
 
+function objectToUrlSearchParams(data) {
+    const params = new URLSearchParams();
+    Object.keys(params).forEach(key => {
+        params.append(key, params[key]);
+    })
+    return params;
+}
+
 client.interceptors.request.use(config => {
     // get请求映射params参数
     if (config.method === 'get' && config.params) {
@@ -41,7 +49,7 @@ client.interceptors.request.use(config => {
     if ((config.method === 'post' || config.method === 'put')) {
         const requestObj = {
             url: config.url,
-            data: typeof config.data === 'object' ? JSON.stringify(config.data) : config.data,
+            data: objectToUrlSearchParams(config.data),
             time: new Date().getTime()
         }
     }
@@ -66,11 +74,18 @@ client.interceptors.response.use(
     }
 )
 
-export function getKnowledgeFromOwnThinking(entity){
+export function dishRecognization(data){
     return client({
-        url: 'https://api.ownthink.com/kg/knowledge',
-        params: entity,
-        method: 'get'
+        url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token=24.a2c13151bcbb304380047398f72f8501.2592000.1713670889.282335-56654433',
+        data,
+        method: 'post'
     })
 }
 
+/**
+ * 俊朗沐冥星:
+ * API Key：5yKwBbup1zHBlEa1X6F4AS3u
+ *
+ * 俊朗沐冥星:
+ * Secret Key：YaMpZBWYEVo7UXQwPUlizra2wSQ8GwoE
+ */

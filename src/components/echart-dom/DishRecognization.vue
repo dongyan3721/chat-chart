@@ -3,6 +3,7 @@
 import {Plus, Scissor} from "@element-plus/icons-vue";
 import {genFileId} from "element-plus";
 import {VueCropper} from "vue-cropper";
+import {dishRecognization} from "@/web-api/dish-recognization.js";
 
 let dialogUploadFileList = ref([{
   name: 'test.png',
@@ -104,7 +105,8 @@ const getCropDataBase64 = () => {
     showPreview.value = true
   })
 }
-// 将确认上传的新头像放在缓冲区
+// 将确认上传的新图片放在缓冲区
+// TODO 这里已经完成图片选择，填充菜品信息
 const transferUploadedToBuffer = ()=>{
   recordWhetherAvatarHadBeenModified.value = true
   dialogUploadFileList.value = [
@@ -114,6 +116,18 @@ const transferUploadedToBuffer = ()=>{
     }
   ]
   cropVis.value = false;
+  const data = {
+    image: previewUrl.value.split(",")[1],
+    top_num: 2,
+    baike_num: 1
+  }
+  dishRecognization(data).then(res=>{
+    const result = res.result;
+    dish.dishName = result[0].name;
+    dish.calorie = result[0].calorie
+    dish.nutrient = "营养营养营养营养营养"
+    dish.advice = "建议建议建议建议建议建议建议建议"
+  })
 }
 // 控制页面内预览对话框可见性
 let bodyPreviewDialogVis = ref(false);
@@ -141,77 +155,96 @@ function adjustDialogImageWidthAndHeight() {
   bodyPreviewDialogWidth.value = `${image.width + 50}px`
 }
 
+let dish = reactive({
+  calorie: null,
+  dishName: null,
+  nutrient: null,
+  advice: null
+})
+
 </script>
 
 <template>
-  <div id="dish-recognize">
-    <!--主页面内头像预览对话框-->
-    <el-dialog v-model="bodyPreviewDialogVis" @close="handleBodyPreviewDialogClose" :width="bodyPreviewDialogWidth" append-to-body>
-      <img :src="dialogUploadFileList[0].url" alt="preview" :height="dialogImageHeight" :width="dialogImageWidth"/>
-      <template #header><span style="color: #666666">头像预览</span></template>
-    </el-dialog>
-    <el-dialog v-model="cropVis" @close="handleCloseCropDialog" width="600px" append-to-body>
-      <template #header>
-        <el-icon color="#666666" size="large">
-          <Scissor/>
-        </el-icon>
-        <span style="color: #666666">头像上传裁剪</span>
-      </template>
-      <el-row>
-        <VueCropper style="min-width: 560px; min-height: 300px" ref="cropperRef" :img="cropOptions.img" :outputSize="cropOptions.outputSize"
-                    :outputType="cropOptions.outputType" :info="cropOptions.info" :canScale="cropOptions.canScale" :autoCrop="cropOptions.autoCrop"
-                    :autoCropWidth="cropOptions.autoCropWidth" :autoCropHeight="cropOptions.autoCropHeight" :fixedBox="cropOptions.fixedBox"
-                    :fixed="cropOptions.fixed" :fixedNumber="cropOptions.fixedNumber" :canMove="cropOptions.canMove" :canMoveBox="cropOptions.canMoveBox"
-                    :original="cropOptions.original" :centerBox="cropOptions.centerBox" :infoTrue="cropOptions.infoTrue" :full="cropOptions.full"
-                    :enlarge="cropOptions.enlarge" :mode="cropOptions.mode" :key="cnt">
-        </VueCropper>
-      </el-row>
-      <el-row style="width: 100%; height: 60px; margin-top: 10px;">
-        <el-button type="primary" plain @click="rotateLeft">←向左旋转图片</el-button>
-        <el-button type="primary" plain @click="rotateRight">向右旋转图片→</el-button>
-        <el-button type="primary" @click="getCropDataBase64">获取截取的图片</el-button>
-      </el-row>
-      <hr>
-      <div>头像预览</div>
-      <div style="width: 600px; height: auto; display: flex; align-items: center; justify-content: center">
-        <!-- 若图片只设置宽度，可以保持等比例展示图片 -->
-        <img :src="previewUrl" style="width: 50px; height: 50px" alt="preview" v-show="showPreview">
-        <div v-show="!showPreview">
-          <img src="@/assets/observe.png" alt="observe" height="44" width="88"/>
-          <span>还没有选择图片哦</span>
+  <div id="dish-wrapper">
+    <div id="dish-recognize">
+      <!--主页面内图片预览对话框-->
+      <el-dialog v-model="bodyPreviewDialogVis" @close="handleBodyPreviewDialogClose" :width="bodyPreviewDialogWidth" append-to-body>
+        <img :src="dialogUploadFileList[0].url" alt="preview" :height="dialogImageHeight" :width="dialogImageWidth"/>
+        <template #header><span style="color: #666666">图片预览</span></template>
+      </el-dialog>
+      <el-dialog v-model="cropVis" @close="handleCloseCropDialog" width="600px" append-to-body>
+        <template #header>
+          <!--      <template #header style="display: flex; align-items: center; justify-content: flex-start;">-->
+          <el-icon color="#666666" size="large">
+            <Scissor/>
+          </el-icon>
+          <span style="color: #666666">图片上传裁剪</span>
+        </template>
+        <el-row>
+          <VueCropper style="min-width: 560px; min-height: 300px" ref="cropperRef" :img="cropOptions.img" :outputSize="cropOptions.outputSize"
+                      :outputType="cropOptions.outputType" :info="cropOptions.info" :canScale="cropOptions.canScale" :autoCrop="cropOptions.autoCrop"
+                      :autoCropWidth="cropOptions.autoCropWidth" :autoCropHeight="cropOptions.autoCropHeight" :fixedBox="cropOptions.fixedBox"
+                      :fixed="cropOptions.fixed" :fixedNumber="cropOptions.fixedNumber" :canMove="cropOptions.canMove" :canMoveBox="cropOptions.canMoveBox"
+                      :original="cropOptions.original" :centerBox="cropOptions.centerBox" :infoTrue="cropOptions.infoTrue" :full="cropOptions.full"
+                      :enlarge="cropOptions.enlarge" :mode="cropOptions.mode" :key="cnt">
+          </VueCropper>
+        </el-row>
+        <el-row style="width: 100%; height: 60px; margin-top: 10px;">
+          <el-button type="primary" plain @click="rotateLeft">←向左旋转图片</el-button>
+          <el-button type="primary" plain @click="rotateRight">向右旋转图片→</el-button>
+          <el-button type="primary" @click="getCropDataBase64">获取截取的图片</el-button>
+        </el-row>
+        <hr>
+        <div>照片预览</div>
+        <div style="width: 600px; height: auto; display: flex; align-items: center; justify-content: center">
+          <!-- 若图片只设置宽度，可以保持等比例展示图片 -->
+          <img :src="previewUrl" style="width: 50px; height: 50px" alt="preview" v-show="showPreview">
+          <div v-show="!showPreview">
+            <img src="@/assets/observe.png" alt="observe" height="44" width="88"/>
+            <span>还没有选择图片哦</span>
+          </div>
         </div>
-      </div>
-      <template #footer>
-        <el-button type="primary" @click="transferUploadedToBuffer" :disabled="!showPreview">确定</el-button>
-      </template>
-    </el-dialog>
-    <el-upload
-        v-model:file-list="dialogUploadFileList"
-        ref="bodyUploadRef"
-        list-type="picture-card"
-        :on-preview="handlePictureCardPreview"
-        :on-exceed="handleExceed"
-        :on-remove="handleAvatarRemove"
-        :on-change="handleAvatarInitialUpload"
-        :before-remove="handleRejectRemove"
-        :auto-upload="false"
-        :limit="1">
-      <template #default>
-        <el-icon><Plus/></el-icon>
-      </template>
-    </el-upload>
+        <template #footer>
+          <el-button type="primary" @click="transferUploadedToBuffer" :disabled="!showPreview">确定</el-button>
+        </template>
+      </el-dialog>
+      <el-upload
+          v-model:file-list="dialogUploadFileList"
+          ref="bodyUploadRef"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-exceed="handleExceed"
+          :on-remove="handleAvatarRemove"
+          :on-change="handleAvatarInitialUpload"
+          :before-remove="handleRejectRemove"
+          :auto-upload="false"
+          :limit="1">
+        <template #default>
+          <el-icon><Plus/></el-icon>
+        </template>
+      </el-upload>
+    </div>
+    <div id="dish-recognize-info">
+      <div>菜品名称：{{dish.dishName}}</div>
+      <div>热量计数：{{dish.calorie}}</div>
+      <div>营养分析：{{dish.nutrient}}</div>
+      <div>优化建议：{{dish.advice}}</div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-::v-deep .el-dialog__header{
+:deep(.el-dialog__header) {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-
-::v-deep .el-form-item__label{
+#dish-wrapper{
   display: flex;
-  align-items: center;
+}
+#dish-wrapper #dish-recognize-info{
+  display: flex;
+  padding: 0 0 0 20px;
+  flex-direction: column;
 }
 </style>
