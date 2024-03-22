@@ -106,7 +106,6 @@ const getCropDataBase64 = () => {
   })
 }
 // 将确认上传的新图片放在缓冲区
-// TODO 这里已经完成图片选择，填充菜品信息
 const transferUploadedToBuffer = ()=>{
   recordWhetherAvatarHadBeenModified.value = true
   dialogUploadFileList.value = [
