@@ -38,7 +38,7 @@ export default {
         ],
         tooltip: {
           trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          formatter: "{a} <br/>{b} : {c}克 ({d}%)"
         },
         toolbox: {
           show: true
@@ -56,7 +56,7 @@ export default {
         },
         series: [
           {
-            name: "增值电信业务统计表",
+            name: "膳食金字塔推荐摄入量",
             type: "pie",
             radius: [10, 60],
             roseType: "area",

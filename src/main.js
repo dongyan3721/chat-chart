@@ -10,6 +10,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'vue-cropper/dist/index.css'
 import dataV from '@kjgl77/datav-vue3'
 import '@icon-park/vue-next/styles/index.css';
+import '@/assets/style/style.scss'
 
 
 const app = createApp(App)

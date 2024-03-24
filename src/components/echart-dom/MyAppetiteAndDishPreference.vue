@@ -206,9 +206,6 @@ onUnmounted(()=>{
 </template>
 
 <style scoped>
-*{
-  background-color: #1a1a1a;
-}
 .my-appetite-and-dish-preferences-container{
   width: 600px;
   height: 500px;

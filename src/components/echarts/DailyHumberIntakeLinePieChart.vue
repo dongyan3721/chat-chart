@@ -26,7 +26,13 @@ const randomColor = ()=>{
   const pleasantColor = [
     '#8c02ea', '#d1be4b', '#b54089', '#1d49ac',
     '#aa6c15', '#ed4b8b', '#8190ee', '#8c1370',
-    '#7e62b9', '#b8d840', '#9e29e3', '#f576be'
+    '#7e62b9', '#b8d840', '#9e29e3', '#f576be',
+    "#f54d4d", "#f87544", "#ffae00", "#dcff00",
+    '#F4AB87', '#EEC88D', '#76CADF', '#97DA9D',
+    '#88DCD8', '#FB7F89', '#F0E403', '#F576BE',
+    '#ACADFF', '#7EC3FB', '#D0DB02', '#C07B11',
+    '#00ACC2', '#2AAD41', '#A59D00', '#EB4747',
+    '#CD0EBD', '#DE3997'
   ]
   return shuffleArray(pleasantColor);
 }
@@ -210,7 +216,5 @@ onUnmounted(()=>{
 </template>
 
 <style scoped>
-#daily-humber-intake-line-pie-chart{
-  background-color: #1a1a1a;
-}
+
 </style>

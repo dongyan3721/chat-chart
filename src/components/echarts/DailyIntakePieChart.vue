@@ -9,6 +9,7 @@
 
 <script>
 import * as echarts from 'echarts';
+import {shuffleArray} from "@/utils/random.js";
 export default {
   data() {
     return {
@@ -19,7 +20,7 @@ export default {
         '#ACADFF', '#7EC3FB', '#D0DB02', '#C07B11',
         '#00ACC2', '#2AAD41', '#A59D00', '#EB4747',
         '#CD0EBD', '#DE3997'
-      ]
+      ],
     };
   },
   props:{
@@ -39,18 +40,19 @@ export default {
           document.getElementById("daily-intake-pie-chart")
       );
       //  ----------------------------------------------------------------
-
+      let colorRandom = shuffleArray(this.color)
       let option = {
         angleAxis: {
           interval: 1,
           type: "category",
           data: [
-            "碳水化合物",
-            "蛋白质",
-            "脂肪",
-            "蔬菜水果",
+            "谷物",
+            "蔬菜",
+            "水果",
+            "肉类",
             "奶制品",
-            "水"
+            "薯类",
+            "大豆坚果"
           ],
           z: 10,
           axisLine: {
@@ -71,12 +73,12 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-          formatter: '{b} : {c}'
+          formatter: '{b} : {c}克'
         },
         radiusAxis: {
           min: 0,
-          max: 100,
-          interval: 20,
+          max: 300,
+          interval: 50,
           axisLine: {
             show: true,
             lineStyle: {
@@ -121,12 +123,12 @@ export default {
             // name: "A",
             type: "bar",
             radius: ["20%", "100%"],
-            data: this.intake.map(intake=> {
+            data: this.intake.map((intake, index)=> {
               return {
                 value: intake,
                 itemStyle: {
                   normal: {
-                    color: this.randomColor()
+                    color: colorRandom[index]
                   }
                 }
               }

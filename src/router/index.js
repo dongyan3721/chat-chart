@@ -11,7 +11,12 @@ const routes = [
     {
         path: '/preview',
         name: 'preview',
-        component: ()=>import('@/components/echart-dom/MyAppetiteAndDishPreference.vue')
+        component: ()=>import('@/view/BigScreenIndex.vue')
+    },
+    {
+        path: '/screen',
+        name: 'screen',
+        component: ()=>import('@/view/BigScreenIndex.vue')
     }
 ];
 

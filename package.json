@@ -44,6 +44,8 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "less": "^4.2.0",
     "markdown-it-link-attributes": "^4.0.1",
+    "sass": "^1.72.0",
+    "scss": "^0.2.4",
     "unplugin-auto-import": "^0.17.2",
     "vite": "^5.1.6"
   }
