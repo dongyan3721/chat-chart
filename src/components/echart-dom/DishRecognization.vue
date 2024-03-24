@@ -296,5 +296,6 @@ let dish = reactive({
   -webkit-background-clip: text; /* Safari/Chrome 下的属性 */
   background-clip: text; /* 将背景裁剪到文字形状上 */
   color: transparent; /* 让文字透明，以便显示背景渐变 */
+  font-weight: bold;
 }
 </style>

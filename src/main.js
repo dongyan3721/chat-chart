@@ -8,6 +8,8 @@ import 'bootstrap'
 import $ from 'jquery'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'vue-cropper/dist/index.css'
+import dataV from '@kjgl77/datav-vue3'
+import '@icon-park/vue-next/styles/index.css';
 
 
 const app = createApp(App)
@@ -22,4 +24,6 @@ app.use(ElementPlus)
 app.use(router)
 // 集成jQuery
 app.use($)
+// 集成边框样式和快速图表样式
+app.use(dataV)
 app.mount('#app')

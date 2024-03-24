@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/preview',
         name: 'preview',
-        component: ()=>import('@/components/echart-dom/DishRecognization.vue')
+        component: ()=>import('@/components/echart-dom/MyAppetiteAndDishPreference.vue')
     }
 ];
 
