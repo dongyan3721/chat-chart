@@ -4,6 +4,9 @@ import {Plus, Scissor} from "@element-plus/icons-vue";
 import {genFileId} from "element-plus";
 import {VueCropper} from "vue-cropper";
 import {dishRecognization} from "@/web-api/dish-recognization.js";
+import {Find} from "@icon-park/vue-next";
+import DailyIntakeFoodNutritionBarFinishLineChart
+  from "@/components/echarts/DailyIntakeFoodNutritionBarFinishLineChart.vue";
 
 let dialogUploadFileList = ref([{
   name: 'test.png',
@@ -205,38 +208,72 @@ let dish = reactive({
         <el-button type="primary" @click="transferUploadedToBuffer" :disabled="!showPreview">确定</el-button>
       </template>
     </el-dialog>
-    <div id="dish-portrait-wrapper">
-      <div id="dish-portrait-wrapper-blur">
-        <div id="dish-recognize">
-          <!--主页面内图片预览对话框-->
-          <el-upload
-              v-model:file-list="dialogUploadFileList"
-              ref="bodyUploadRef"
-              list-type="picture-card"
-              :on-preview="handlePictureCardPreview"
-              :on-exceed="handleExceed"
-              :on-remove="handleAvatarRemove"
-              :on-change="handleAvatarInitialUpload"
-              :before-remove="handleRejectRemove"
-              :auto-upload="false"
-              :limit="1">
-            <template #default>
-              <el-icon><Plus/></el-icon>
-            </template>
-          </el-upload>
+    <div class="table-title" style="padding: 0 0 10px 10px">
+      <Find theme="outline" size="20" fill="#5cd9e8"/>
+      <span>食物热量识别</span>
+    </div>
+    <div class="dish-recognization-body">
+      <div class="left-recoginzation-text">
+        <div id="dish-portrait-wrapper-blur">
+          <div id="dish-recognize">
+            <!--主页面内图片预览对话框-->
+            <el-upload
+                v-model:file-list="dialogUploadFileList"
+                ref="bodyUploadRef"
+                list-type="picture-card"
+                :on-preview="handlePictureCardPreview"
+                :on-exceed="handleExceed"
+                :on-remove="handleAvatarRemove"
+                :on-change="handleAvatarInitialUpload"
+                :before-remove="handleRejectRemove"
+                :auto-upload="false"
+                :limit="1">
+              <template #default>
+                <el-icon><Plus/></el-icon>
+              </template>
+            </el-upload>
+          </div>
+        </div>
+        <div id="dish-recognize-info">
+          <div class="text-result">菜品名称：{{dish.dishName}}</div>
+          <div class="text-result">热量计数：{{dish.calorie}}</div>
+          <div class="text-result">营养分析：{{dish.nutrient}}</div>
+          <div class="text-result">优化建议：{{dish.advice}}</div>
         </div>
       </div>
-    </div>
-    <div id="dish-recognize-info">
-      <div class="text-result">菜品名称：{{dish.dishName}}</div>
-      <div class="text-result">热量计数：{{dish.calorie}}</div>
-      <div class="text-result">营养分析：{{dish.nutrient}}</div>
-      <div class="text-result">优化建议：{{dish.advice}}</div>
+      <div class="right-recoginzation-nutrition-chart">
+        <DailyIntakeFoodNutritionBarFinishLineChart/>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.dish-recognization-body{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.left-recoginzation-text{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+#dish-recognize-info{
+  display: flex;
+  padding: 10px 20px;
+  flex-direction: column;
+  height: 45%;
+  width: 100%;
+  overflow: auto;
+}
+.right-recoginzation-nutrition-chart{
+  width: 50%;
+  height: 100%;
+}
 :deep(.el-dialog .el-dialog__header) {
   display: flex;
   justify-content: flex-start;
@@ -246,17 +283,10 @@ let dish = reactive({
   display: flex;
   width: 100%;
   height: 100%;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
   filter: none;
-}
-#dish-wrapper #dish-recognize-info{
-  display: flex;
-  padding: 20px 0 0 40px;
-  flex-direction: column;
-  height: 300px;
-  width: 300px;
-  overflow: auto;
 }
 :deep(.el-upload--picture-card){
   background-color: rgba(0, 0, 0, 0.4);
@@ -270,23 +300,23 @@ let dish = reactive({
 }
 #dish-portrait-wrapper-blur{
   backdrop-filter: blur(10px);
-  height: 100%;
+  height: 45%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
 }
-#dish-portrait-wrapper{
+/*#dish-portrait-wrapper{
   width: 500px;
   height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /*background-image: url("src/assets/chicken.jpeg");*/
+  background-image: url("src/assets/chicken.jpeg");
   background-size: cover;
   border-radius: 10px;
-}
+}*/
 .text-result{
   font-family: Consolas, Monaco, Droid, Sans, Mono, Source, Code, Pro, Menlo, Lucida, Sans, Type, Writer, Ubuntu, Mono;
   font-size: 18px;
@@ -296,5 +326,12 @@ let dish = reactive({
   color: transparent; /* 让文字透明，以便显示背景渐变 */
   font-weight: bold;
   padding: 5px;
+}
+.table-title{
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0 10px 0;
 }
 </style>

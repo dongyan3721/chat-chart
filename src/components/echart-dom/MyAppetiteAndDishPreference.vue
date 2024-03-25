@@ -189,7 +189,7 @@ onUnmounted(()=>{
     <div class="left-intake-variety-absolute">
       <!--近七日各类营养素摄入的绝对值-->
       <div class="table-title" style="padding: 0 0 10px 10px">
-        <chart-histogram-one theme="outline" size="20" fill="#fff"/>
+        <chart-histogram-one theme="outline" size="20" fill="#5cd9e8"/>
         <span>一周内摄入营养物质</span>
       </div>
       <dv-capsule-chart :config="config" style="width: 100%; height: 40%"/>
@@ -197,7 +197,7 @@ onUnmounted(()=>{
     </div>
     <div class="right-intake-finish-ratio">
       <div class="table-title">
-        <Pineapple theme="outline" size="20" fill="#FFF"/>
+        <Pineapple theme="outline" size="20" fill="#5cd9e8"/>
         <span>钟爱菜式TOP20</span>
       </div>
       <dv-scroll-ranking-board :config="ranking" style="height: 90%; width: 100%"/>
