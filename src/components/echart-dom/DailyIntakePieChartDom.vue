@@ -9,7 +9,7 @@ const intake = [
 
 <template>
   <div class="table-title" style="padding: 0 0 10px 10px">
-    <chart-proportion theme="outline" size="20" fill="#fff"/>
+    <chart-proportion theme="outline" size="20" fill="#5cd9e8"/>
     <span>今日已摄入的营养</span>
   </div>
   <DailyIntakePieChart :intake="intake"/>

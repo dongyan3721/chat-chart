@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="recommended-intake-pie-chart" style="width:260px; height: 220px;"></div>
+    <div id="recommended-intake-pie-chart" style="width: 15vw; min-width: 300px; height: 220px;"></div>
   </div>
 </template>
 

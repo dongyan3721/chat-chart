@@ -66,12 +66,12 @@ import CurrentTime from "@/components/CurrentTime.vue";
           <!-- 第三行数据 -->
           <div class="content-box">
             <div>
-              <dv-border-box-12>
+              <dv-border-box-12 style="padding: 10px">
                 <RecommendedIntakePieChartDom/>
               </dv-border-box-12>
             </div>
             <div>
-              <dv-border-box-12>
+              <dv-border-box-12 style="padding: 10px">
                 <DailyIntakePieChartDom/>
               </dv-border-box-12>
             </div>
@@ -80,18 +80,18 @@ import CurrentTime from "@/components/CurrentTime.vue";
               <MyAppetiteAndDishPreference/>
             </div>
             <div>
-              <dv-border-box-13>
+              <dv-border-box-13 style="padding: 10px">
                 <RecommendedCommodities/>
               </dv-border-box-13>
             </div>
           </div>
 
           <!-- 第四行数据 -->
-          <div class="bototm-box">
-            <dv-border-box-13>
+          <div class="bottom-box">
+            <dv-border-box-13 style="padding: 10px">
               <DishRecognization/>
             </dv-border-box-13>
-            <dv-border-box-12>
+            <dv-border-box-12 style="padding: 10px">
               <DailyHumberIntakeLinePieChartDom/>
             </dv-border-box-12>
           </div>

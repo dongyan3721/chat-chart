@@ -244,16 +244,15 @@ let dish = reactive({
 }
 #dish-wrapper{
   display: flex;
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
   filter: none;
 }
 #dish-wrapper #dish-recognize-info{
   display: flex;
-  padding: 0 0 0 40px;
+  padding: 20px 0 0 40px;
   flex-direction: column;
   height: 300px;
   width: 300px;
@@ -271,7 +270,6 @@ let dish = reactive({
 }
 #dish-portrait-wrapper-blur{
   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.1);
   height: 100%;
   width: 100%;
   display: flex;
@@ -285,7 +283,7 @@ let dish = reactive({
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("src/assets/chicken.jpeg");
+  /*background-image: url("src/assets/chicken.jpeg");*/
   background-size: cover;
   border-radius: 10px;
 }
@@ -297,5 +295,6 @@ let dish = reactive({
   background-clip: text; /* 将背景裁剪到文字形状上 */
   color: transparent; /* 让文字透明，以便显示背景渐变 */
   font-weight: bold;
+  padding: 5px;
 }
 </style>

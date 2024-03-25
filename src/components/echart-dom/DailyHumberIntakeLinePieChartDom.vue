@@ -6,7 +6,7 @@ import {ChartLine} from "@icon-park/vue-next";
 
 <template>
   <div class="table-title" style="padding: 0 0 10px 10px">
-    <chart-line theme="outline" size="20" fill="#fff"/>
+    <chart-line theme="outline" size="20" fill="#5cd9e8"/>
     <span>近期热量摄入图</span>
   </div>
   <DailyHumberIntakeLinePieChart/>

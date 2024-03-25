@@ -3,7 +3,7 @@
 -->
 <template>
   <div>
-    <div id="daily-intake-pie-chart" style="width:330px; height: 370px;"></div>
+    <div id="daily-intake-pie-chart" style="width: 20vw; min-width:330px; height: 370px;"></div>
   </div>
 </template>
 

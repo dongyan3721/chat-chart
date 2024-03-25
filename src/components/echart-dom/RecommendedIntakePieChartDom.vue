@@ -14,7 +14,7 @@ const data = ref(
 
 <template>
   <div class="table-title" style="padding: 0 0 10px 10px">
-    <chart-proportion theme="outline" size="20" fill="#fff"/>
+    <chart-proportion theme="outline" size="20" fill="#5cd9e8"/>
     <span>膳食金字塔推荐摄入量</span>
   </div>
   <RecommendedIntakePieChart :recommended="data"/>

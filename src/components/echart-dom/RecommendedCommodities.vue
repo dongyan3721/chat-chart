@@ -2,15 +2,13 @@
   <div id="recommended-commodities">
     <div class="bg-color-black">
       <div class="d-flex pt-2 pl-2">
-        <span style="color:#5cd9e8">
-          <el-icon><DataLine/></el-icon>
-        </span>
-        <div class="d-flex">
-          <span class="fs-xl text mx-2">任务完成排行榜</span>
+        <div class="table-title">
+          <chart-proportion theme="outline" size="20" fill="#5cd9e8"/>
+          <span>健康菜品推荐</span>
         </div>
       </div>
       <div class="d-flex jc-center body-box">
-        <dv-scroll-board :config="config" style="width:270px;height:360px" />
+        <dv-scroll-board :config="config" style="min-width:270px; width: 20vw; height:360px" />
       </div>
     </div>
   </div>
@@ -18,6 +16,7 @@
 
 <script>
 import {DataLine} from "@element-plus/icons-vue";
+import {ChartProportion} from "@icon-park/vue-next";
 
 export default {
   data() {
@@ -47,14 +46,14 @@ export default {
       }
     };
   },
-  components: {DataLine},
+  components: {ChartProportion, DataLine},
   mounted() {},
   methods: {}
 };
 </script>
 
 <style lang="scss">
-#centreRight1 {
+#recommended-commodities {
   padding: 1rem;
   height: 410px;
   min-width: 300px;
@@ -71,5 +70,13 @@ export default {
     overflow: hidden;
   }
 
+}
+.table-title{
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 0 10px 0;
+  font-size: 1.2rem;
 }
 </style>

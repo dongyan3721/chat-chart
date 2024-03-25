@@ -207,8 +207,9 @@ onUnmounted(()=>{
 
 <style scoped>
 .my-appetite-and-dish-preferences-container{
-  width: 600px;
-  height: 500px;
+  width: 35vw;
+  min-width: 500px;
+  height: 400px;
   display: flex;
   padding: 10px;
   justify-content: space-around;
