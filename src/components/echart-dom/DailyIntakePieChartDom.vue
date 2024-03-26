@@ -2,7 +2,7 @@
 import DailyIntakePieChart from "@/components/echarts/DailyIntakePieChart.vue";
 import {ChartProportion} from "@icon-park/vue-next";
 const intake = [
-    235, 281, 152, 138, 250, 0, 42
+    188, 281, 122, 108, 250, 0, 12
 ]
 
 </script>
