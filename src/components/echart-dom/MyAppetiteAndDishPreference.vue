@@ -115,8 +115,8 @@ const drawRadar = sidebar=>{
       splitArea: {
         show: true,
         areaStyle: {
-          color: ['#77EADF', '#26C3BE', '#6db5ed', '#428BD4'],
-          opacity: 1,
+          // color: ['#77EADF', '#26C3BE', '#6db5ed', '#428BD4'],
+          opacity: 0,
           shadowBlur: 25,
           shadowColor: "#666666",
           shadowOffsetX: 0,
@@ -157,7 +157,7 @@ const drawRadar = sidebar=>{
             areaStyle: {
               normal: {
                 opacity: 0.8,
-                color: 'rgba(255,211,0,0.6)'
+                color: 'rgb(215,186,243)'
               }
             }
           }

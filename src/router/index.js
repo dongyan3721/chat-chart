@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/preview',
         name: 'preview',
-        component: ()=>import('@/view/BigScreenIndex.vue')
+        component: ()=>import('@/components/echarts/FoodCategoryChinaMapWordCloudDiagram.vue')
     },
     {
         path: '/screen',
