@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/preview',
         name: 'preview',
-        component: ()=>import('@/components/echarts/FoodCategoryChinaMapWordCloudDiagram.vue')
+        component: ()=>import('@/components/echart-dom/FoodCategoryChinaMapWordCloudDiagram.vue')
     },
     {
         path: '/screen',

@@ -6,6 +6,7 @@ import MyAppetiteAndDishPreference from "@/components/echart-dom/MyAppetiteAndDi
 import RecommendedCommodities from "@/components/echart-dom/RecommendedCommodities.vue";
 import RecommendedIntakePieChartDom from "@/components/echart-dom/RecommendedIntakePieChartDom.vue";
 import CurrentTime from "@/components/CurrentTime.vue";
+import FoodCategoryChinaMapWordCloudDiagram from "@/components/echart-dom/FoodCategoryChinaMapWordCloudDiagram.vue";
 </script>
 
 <template>
@@ -67,12 +68,12 @@ import CurrentTime from "@/components/CurrentTime.vue";
           <div class="content-box">
             <div>
               <dv-border-box-12 style="padding: 10px">
-                <RecommendedIntakePieChartDom/>
+                <DailyIntakePieChartDom/>
               </dv-border-box-12>
             </div>
             <div>
               <dv-border-box-12 style="padding: 10px">
-                <DailyIntakePieChartDom/>
+                <FoodCategoryChinaMapWordCloudDiagram/>
               </dv-border-box-12>
             </div>
             <!-- 中间 -->

@@ -8,7 +8,8 @@
         </div>
       </div>
       <div class="d-flex jc-center body-box">
-        <dv-scroll-board :config="config" style="min-width:270px; width: 20vw; height:360px" />
+        <dv-scroll-board :config="config" style=" width: 15vw; height:360px" />
+<!--        <dv-scroll-board :config="config" style="min-width:200px; width: 15vw; height:360px" />-->
       </div>
     </div>
   </div>

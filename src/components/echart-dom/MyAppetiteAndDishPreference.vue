@@ -207,11 +207,11 @@ onUnmounted(()=>{
 
 <style scoped>
 .my-appetite-and-dish-preferences-container{
-  width: 35vw;
-  min-width: 500px;
-  height: 400px;
+  width: 30vw;
+  /*min-width: 500px;*/
+  height: 420px;
   display: flex;
-  padding: 10px;
+  /*padding: 10px;*/
   justify-content: space-around;
   align-items: center;
 }
@@ -234,6 +234,6 @@ onUnmounted(()=>{
 }
 #right-intake-finish-ratio-draw{
   width: 100%;
-  height: 50%;
+  height: 55%;
 }
 </style>

@@ -3,8 +3,10 @@
 -->
 <template>
   <div>
-    <div id="daily-intake-pie-chart" style="width: 20vw; min-width:330px; height: 220px;"></div>
-    <div id="recommended-insist-intake" style="width: 20vw; min-width: 330px; height: 150px"></div>
+<!--    <div id="daily-intake-pie-chart" style="width: 20vw; min-width:330px; height: 220px;"></div>-->
+    <div id="daily-intake-pie-chart" style="width: 20vw; height: 220px;"></div>
+<!--    <div id="recommended-insist-intake" style="width: 20vw; min-width: 330px; height: 150px"></div>-->
+    <div id="recommended-insist-intake" style="width: 20vw; height: 150px"></div>
   </div>
 </template>
 
