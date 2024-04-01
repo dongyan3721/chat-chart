@@ -129,7 +129,7 @@ const handleTabClicked = (ev)=>{
 
 <style scoped lang="scss">
 .food-category-china-map-word-cloud-diagram-wrapper{
-  width: 30vw;
+  width: 27vw;
   //min-width: 500px;
   height: 380px;
   display: flex;

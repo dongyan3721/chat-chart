@@ -57,7 +57,9 @@ export default {
 #recommended-commodities {
   padding: 1rem;
   height: 410px;
-  min-width: 300px;
+  //min-width: 300px;
+  width: 100%;
+  min-width: 16vw;
   border-radius: 5px;
   .bg-color-black {
     height: 385px;

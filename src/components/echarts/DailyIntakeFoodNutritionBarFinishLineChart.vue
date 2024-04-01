@@ -1,6 +1,10 @@
 <script setup>
 import * as echarts from 'echarts'
 
+const prop = defineProps({
+  carbonFatProteinFiber: Array
+})
+
 const requiredIntake = [
     // 2000, // 总能量需求
     300, // 碳水需求
@@ -22,14 +26,8 @@ function drawChart() {
     "蛋白质",
     "纤维素"
   ];
-  // TODO 把这个变成prop
-  let lineData = [
-      // 646,
-      19.10,
-      58.8,
-      14.9,
-      9.5
-  ];
+
+  let lineData = prop.carbonFatProteinFiber
   let barData = requiredIntake.map(item=>item);
   let ratio = lineData.map((item, index)=>{
     return (item/barData[index]).toFixed(2);
@@ -168,7 +166,10 @@ function drawChart() {
 onMounted(()=>{
   drawChart();
 })
+// TODO 视图更新时setOption更新一下dom
+onUpdated(()=>{
 
+})
 onUnmounted(()=>{
   window.onresize = null
 })

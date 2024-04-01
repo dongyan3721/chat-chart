@@ -7,14 +7,23 @@ import RecommendedCommodities from "@/components/echart-dom/RecommendedCommoditi
 import RecommendedIntakePieChartDom from "@/components/echart-dom/RecommendedIntakePieChartDom.vue";
 import CurrentTime from "@/components/CurrentTime.vue";
 import FoodCategoryChinaMapWordCloudDiagram from "@/components/echart-dom/FoodCategoryChinaMapWordCloudDiagram.vue";
+let loading = ref(true)
+function cancelLoading() {
+  setTimeout(() => {
+    loading.value = false;
+  }, 2000);
+}
+onMounted(()=>{
+  cancelLoading()
+})
 </script>
 
 <template>
   <div id="index">
     <dv-full-screen-container class="bg">
-<!--      <dv-loading v-if="loading">Loading...</dv-loading>-->
-<!--      <div v-else class="host-body">-->
-      <div class="host-body">
+      <dv-loading v-if="loading">Loading...</dv-loading>
+      <div v-else class="host-body">
+<!--      <div class="host-body">-->
         <div style="display: flex; justify-content: center">
           <dv-decoration-10 style="width:33.3%;height:5px;" />
           <div style="display: flex; justify-content: center">

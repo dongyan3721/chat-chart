@@ -8,11 +8,29 @@ import {Find} from "@icon-park/vue-next";
 import DailyIntakeFoodNutritionBarFinishLineChart
   from "@/components/echarts/DailyIntakeFoodNutritionBarFinishLineChart.vue";
 
+let filename = ref('')
+
 let dialogUploadFileList = ref([{
   name: 'test.png',
-  url: 'https://n.sinaimg.cn/sinacn23/258/w641h417/20180905/78f7-hitesuy8218027.jpg'
+  // url: 'https://n.sinaimg.cn/sinacn23/258/w641h417/20180905/78f7-hitesuy8218027.jpg'
+  url: 'http://localhost:5173/fish.jpg'
 }])
 
+// 假的...
+const nutrition_fake = {
+  '测试菜品2.jfif': {
+    nutrient: '补钙、改善缺铁性贫血',
+    carbonFatProteinFiber: [3.23, 6.68, 5.48, 0.52]
+  },
+  '测试菜品1.jpg': {
+    nutrient: '含有蛋白质、脂肪酸、铜元素、铁元素等营养物质，有利于人体健康',
+    carbonFatProteinFiber: [3.88, 49.83, 8.13, 0.52]
+  },
+  '测试菜品3.png': {
+    nutrient: '清热利尿、清肝利胆、辅助减肥',
+    carbonFatProteinFiber: [2.49, 1.93, 1.17, 1.1]
+  }
+}
 
 // 控制是否需要替换，el-upload是默认上传后直接填在框里的
 let replaceOriginalAvatarFlag = ref(false)
@@ -21,6 +39,7 @@ let replaceOriginalAvatarFlag = ref(false)
 const handleExceed = (files) => {
   if(!replaceOriginalAvatarFlag.value){
     cropOptions.img = URL.createObjectURL(files[0]);
+    filename.value = files[0].name;
     cropVis.value = true
     return
   }
@@ -126,9 +145,9 @@ const transferUploadedToBuffer = ()=>{
   dishRecognization(data).then(res=>{
     const result = res.result;
     dish.dishName = result[0].name;
-    dish.calorie = result[0].calorie
-    dish.nutrient = "营养营养营养营养营养"
-    dish.advice = "建议建议建议建议建议建议建议建议"
+    dish.calorie = result[0].calorie + '大卡/100g'
+    dish.nutrient = nutrition_fake[filename.value].nutrient
+    carbonFatProteinFiber.value = nutrition_fake[filename.value].carbonFatProteinFiber
   })
 }
 // 控制页面内预览对话框可见性
@@ -158,11 +177,12 @@ function adjustDialogImageWidthAndHeight() {
 }
 
 let dish = reactive({
-  calorie: null,
-  dishName: null,
-  nutrient: null,
-  advice: null
+  calorie: '117大卡/100g',
+  dishName: '臭鳜鱼',
+  nutrient: '富含优质蛋白质，脂肪含量较低'
 })
+
+let carbonFatProteinFiber = ref([1.65, 5.02, 18.88, 0.31])
 
 </script>
 
@@ -238,11 +258,10 @@ let dish = reactive({
           <div class="text-result">菜品名称：{{dish.dishName}}</div>
           <div class="text-result">热量计数：{{dish.calorie}}</div>
           <div class="text-result">营养分析：{{dish.nutrient}}</div>
-          <div class="text-result">优化建议：{{dish.advice}}</div>
         </div>
       </div>
       <div class="right-recoginzation-nutrition-chart">
-        <DailyIntakeFoodNutritionBarFinishLineChart/>
+        <DailyIntakeFoodNutritionBarFinishLineChart :carbon-fat-protein-fiber="carbonFatProteinFiber"/>
       </div>
     </div>
   </div>
