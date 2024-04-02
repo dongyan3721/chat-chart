@@ -1,24 +1,68 @@
 <script setup>
 import * as echarts from 'echarts';
-import {shuffleArray} from "@/utils/random.js";
+import {shuffleArray, oneZeroRandom, getRandomValueBetween} from "@/utils/random.js";
+import {generateSeriesOfDate} from "@/utils/time.js";
 
-const optionsData = [
-  ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
-  ['Milk Tea', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-  ['Matcha Latte', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-  ['Cheese Cocoa', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-  ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
-]
+// const optionsData = [
+//   ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+//   ['Milk Tea', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+//   ['Matcha Latte', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+//   ['Cheese Cocoa', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+//   ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+// ]
 
+// 生成30天的数据
+const LENGTH_TO_GENERATE = 30;
+// 日需摄入热量
+const CALORIE_NEED_PER_DAY = 2300;
+
+// 发生随机数据
+function fillOptionData(){
+  let optionData = [
+    ['date'],
+    ['碳水化合物'],
+    ['脂肪'],
+    // ['*不饱和脂肪'],
+    ['蛋白质'],
+    ['*酒']
+  ]
+  optionData[0] = optionData[0].concat(generateSeriesOfDate(LENGTH_TO_GENERATE))
+  // 填充依靠碳水获取的热量
+  let carbon = [], fat = [], protein = [], alcohol = [] // , unFat = []
+  for(let i = 0; i < LENGTH_TO_GENERATE; i++) {
+    carbon.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.50, 0.65).toFixed(2))
+    let randomFatIntake = CALORIE_NEED_PER_DAY*getRandomValueBetween(0.25, 0.35).toFixed(2)
+    fat.push(randomFatIntake)
+    // unFat.push(randomFatIntake*getRandomValueBetween(0.30, 0.40).toFixed(2))
+    protein.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.10, 0.15).toFixed(2))
+    alcohol.push(oneZeroRandom(34.21, 56.29))
+  }
+  optionData[1] = optionData[1].concat(carbon)
+  optionData[2] = optionData[2].concat(fat)
+  // optionData[3] = optionData[2].concat(unFat)
+  optionData[3] = optionData[3].concat(protein)
+  optionData[4] = optionData[4].concat(alcohol)
+
+  return optionData
+}
+
+// 已经固定的要被插入的数据
+const optionsData =fillOptionData()
+
+// 计算总热量
 const modify = (data)=>{
+  console.log(optionsData)
   let ret = []
-  for(let j=1;j<7;j++){
+  for(let j=1;j<=LENGTH_TO_GENERATE;j++){
     let sum = 0;
-    for(let i=1;i<5;++i){
+    for(let i=1;i<=4;++i){
+      // 不饱和脂肪酸已经计入脂肪
+      // if (i===3) continue
       sum+=data[i][j]
     }
     ret.push(sum)
   }
+  console.log(ret)
   return ret
 }
 
@@ -56,7 +100,7 @@ const options = {
   xAxis: {
     type: 'category',
     // x轴上的坐标也要加上
-    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
+    data: generateSeriesOfDate(LENGTH_TO_GENERATE),
     position: "bottom",
     axisLine: true,
     axisLabel: {

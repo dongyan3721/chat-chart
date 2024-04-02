@@ -32,3 +32,19 @@ export function formatDate(date) {
 
 }
 
+const dayLong = 1000*60*60*24;
+
+/**
+ * 生成从昨天开始计数的length个日期
+ * @param length
+ */
+export function generateSeriesOfDate(length){
+    let ret = []
+    const timestamp = Date.now();
+    for (let i = 1; i <= length; i++){
+        const date = new Date(timestamp-i*dayLong);
+        ret.push(`${date.getMonth()+1}/${date.getDate()}`);
+    }
+    return ret;
+}
+

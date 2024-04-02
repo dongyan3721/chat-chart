@@ -13,27 +13,16 @@ const requiredIntake = [
     25 // 纤维素需求
 ]
 
-function drawChart() {
-  // 基于准备好的dom，初始化echarts实例
-  let myChartPieLeft = echarts.init(
-      document.getElementById("daily-intake-food-nutrition-bar")
-  );
-  //  ----------------------------------------------------------------
-  let category = [
-    // "热量",
-    "碳水化合物",
-    "脂肪",
-    "蛋白质",
-    "纤维素"
-  ];
+const category = [ // "热量",
+  "碳水化合物", "脂肪", "蛋白质", "纤维素"];
 
+let options = computed(()=>{
   let lineData = prop.carbonFatProteinFiber
   let barData = requiredIntake.map(item=>item);
   let ratio = lineData.map((item, index)=>{
     return (item/barData[index]).toFixed(2);
   })
-
-  let option = {
+  return {
     title: {
       text: "",
       x: "center",
@@ -156,19 +145,17 @@ function drawChart() {
         data: lineData
       }
     ]
-  };
-  myChartPieLeft.setOption(option);
-  // -----------------------------------------------------------------
-  // 响应式变化
-  window.addEventListener("resize", () => myChartPieLeft.resize(), false);
-}
-
-onMounted(()=>{
-  drawChart();
+  }
 })
-// TODO 视图更新时setOption更新一下dom
-onUpdated(()=>{
 
+let myCharts;
+onMounted(()=>{
+  myCharts = echarts.init(document.getElementById("daily-intake-food-nutrition-bar"))
+  myCharts.setOption(options.value)
+})
+// 视图更新时setOption更新一下dom
+onUpdated(()=>{
+  myCharts.setOption(options.value)
 })
 onUnmounted(()=>{
   window.onresize = null
