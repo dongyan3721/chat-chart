@@ -19,7 +19,7 @@ const CALORIE_NEED_PER_DAY = 2300;
 // 发生随机数据
 function fillOptionData(){
   let optionData = [
-    ['date'],
+    ['日期'],
     ['碳水化合物'],
     ['脂肪'],
     // ['*不饱和脂肪'],
@@ -30,11 +30,11 @@ function fillOptionData(){
   // 填充依靠碳水获取的热量
   let carbon = [], fat = [], protein = [], alcohol = [] // , unFat = []
   for(let i = 0; i < LENGTH_TO_GENERATE; i++) {
-    carbon.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.50, 0.65).toFixed(2))
-    let randomFatIntake = CALORIE_NEED_PER_DAY*getRandomValueBetween(0.25, 0.35).toFixed(2)
+    carbon.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.50, 0.65))
+    let randomFatIntake = CALORIE_NEED_PER_DAY*getRandomValueBetween(0.25, 0.35)
     fat.push(randomFatIntake)
     // unFat.push(randomFatIntake*getRandomValueBetween(0.30, 0.40).toFixed(2))
-    protein.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.10, 0.15).toFixed(2))
+    protein.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.10, 0.15))
     alcohol.push(oneZeroRandom(34.21, 56.29))
   }
   optionData[1] = optionData[1].concat(carbon)
@@ -51,7 +51,7 @@ const optionsData =fillOptionData()
 
 // 计算总热量
 const modify = (data)=>{
-  console.log(optionsData)
+  console.log(data)
   let ret = []
   for(let j=1;j<=LENGTH_TO_GENERATE;j++){
     let sum = 0;
@@ -78,8 +78,10 @@ const randomColor = ()=>{
     '#00ACC2', '#2AAD41', '#A59D00', '#EB4747',
     '#CD0EBD', '#DE3997'
   ]
-  return shuffleArray(pleasantColor);
+  return ['#8190ee', '#f576be', '#D0DB02', '#7EC3FB']
 }
+
+const yesterday = generateSeriesOfDate(2)[0]
 
 const options = {
   color: randomColor(),
@@ -92,7 +94,7 @@ const options = {
   tooltip: {
     // 触发条件必须是axis
     trigger: 'axis',
-    showContent: false
+    showContent: true
   },
   dataset: {
     source: optionsData
@@ -109,7 +111,7 @@ const options = {
     },
   },
   yAxis: {
-    // gridIndex: 0,
+    gridIndex: 0,
     nameGap: 24,
     nameTextStyle: {
       color: "rgba(255,255,255,.5)",
@@ -139,6 +141,7 @@ const options = {
   },
   series: [
     {
+      name: '总量',
       type: 'line',
       smooth: true,
       // seriesLayoutBy: 'row',
@@ -198,6 +201,30 @@ const options = {
       },
     },
     {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
       type: 'pie',
       id: 'pie',
       center: ['50%', '25%'],
@@ -207,15 +234,12 @@ const options = {
       radius: [10, 60],
       roseType: "area",
       label: {
-        formatter: '{b}: {@2012} ({d}%)'
+        formatter: '{b}: {@'+yesterday+'} ({d}%)'
       },
       encode: {
-        itemName: 'product',
-        value: '2012',
-        tooltip: '2012'
-      },
-      tooltip:{
-        formatter: '{b} ({d}%)'
+        itemName: '日期',
+        value: yesterday,
+        tooltip: yesterday
       }
     }
   ]
@@ -229,6 +253,7 @@ onMounted(()=>{
     const xAxisInfo = event.axesInfo[0];
     if (xAxisInfo) {
       const dimension = xAxisInfo.value + 1;
+      console.log(dimension)
       chart.setOption({
         series: {
           id: 'pie',
@@ -251,6 +276,102 @@ onUnmounted(()=>{
   window.onresize = null;
 })
 
+
+/**
+const options = {
+  legend: {},
+  tooltip: {
+    trigger: 'axis',
+    showContent: true
+  },
+  dataset: {
+    // source: [
+    //   ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+    //   ['Milk Tea', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+    //   ['Matcha Latte', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+    //   ['Cheese Cocoa', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+    //   ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+    // ]
+    source: optionsData
+  },
+  xAxis: { type: 'category' },
+  yAxis: { gridIndex: 0 },
+  grid: { top: '55%' },
+  series: [
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' }
+    },
+    {
+      type: 'pie',
+      id: 'pie',
+      radius: '30%',
+      center: ['50%', '25%'],
+      emphasis: {
+        focus: 'self'
+      },
+      label: {
+        formatter: '{b}: {'+yesterday+'} ({d}%)'
+      },
+      encode: {
+        itemName: '日期',
+        value: yesterday,
+        tooltip: yesterday
+      }
+    }
+  ]
+};
+
+onMounted(()=>{
+  const myChart = echarts.init(document.getElementById('daily-humber-intake-line-pie-chart'))
+  myChart.on('updateAxisPointer', function (event) {
+    const xAxisInfo = event.axesInfo[0];
+    if (xAxisInfo) {
+      const dimension = xAxisInfo.value + 1;
+      console.log(dimension)
+      myChart.setOption({
+        series: {
+          id: 'pie',
+          label: {
+            formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+          },
+          encode: {
+            value: dimension,
+            tooltip: dimension
+          }
+        }
+      });
+    }
+  });
+
+  myChart.setOption(options);
+  window.addEventListener("resize", () => myChart.resize(), false);
+})
+
+onUnmounted(()=>{
+  window.onresize = null;
+})
+*/
 </script>
 
 <template>
