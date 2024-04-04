@@ -27,14 +27,14 @@ export function getRandomValueBetween(min, max) {
     // 生成一个0到1之间的随机浮点数
     let random = Math.random();
     // 使用线性插值计算两个浮点数之间的某一值
-    return min + (max - min) * random;
+    return (min + (max - min) * random);
 }
 
 // 饮酒概率随机
 export function oneZeroRandom(min, max) {
     let random = Math.random();
     if (random>0.8){
-        return getRandomValueBetween(min, max)
+        return getRandomValueBetween(min, max).toFixed(2)
     }
     return 0;
 }

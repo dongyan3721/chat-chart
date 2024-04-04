@@ -6,7 +6,7 @@ const routes = [
     },
     {
         path: '/',
-        redirect: '/preview'
+        redirect: '/screen'
     },
     {
         path: '/preview',

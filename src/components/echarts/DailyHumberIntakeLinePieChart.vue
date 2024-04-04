@@ -30,12 +30,12 @@ function fillOptionData(){
   // 填充依靠碳水获取的热量
   let carbon = [], fat = [], protein = [], alcohol = [] // , unFat = []
   for(let i = 0; i < LENGTH_TO_GENERATE; i++) {
-    carbon.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.50, 0.65))
-    let randomFatIntake = CALORIE_NEED_PER_DAY*getRandomValueBetween(0.25, 0.35)
+    carbon.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.50, 0.65).toFixed(2))
+    let randomFatIntake = CALORIE_NEED_PER_DAY*getRandomValueBetween(0.25, 0.35).toFixed(2)
     fat.push(randomFatIntake)
     // unFat.push(randomFatIntake*getRandomValueBetween(0.30, 0.40).toFixed(2))
-    protein.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.10, 0.15))
-    alcohol.push(oneZeroRandom(34.21, 56.29))
+    protein.push(CALORIE_NEED_PER_DAY*getRandomValueBetween(0.10, 0.15).toFixed(2))
+    alcohol.push(parseFloat(String(oneZeroRandom(36.55, 51.98))))
   }
   optionData[1] = optionData[1].concat(carbon)
   optionData[2] = optionData[2].concat(fat)
