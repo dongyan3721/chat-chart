@@ -75,4 +75,11 @@ export function getKnowledgeFromOwnThinking(entity){
 }
 
 
+export function getUserInputKeywords(input){
+    return client({
+        url: 'http://localhost:8080/algorithm/keyword-extract/'+input,
+        method: 'get'
+    })
+}
+
 export default client

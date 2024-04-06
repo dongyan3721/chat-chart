@@ -43,6 +43,17 @@ export default {
   mounted () {
     this.initD3()
   },
+  updated() {
+    const container = document.querySelector("svg");
+    let svgElements = container.getElementsByTagName('g');
+    svgElements = Array.from(svgElements);
+    svgElements.forEach(function(svgElement) {
+      svgElement.parentNode.removeChild(svgElement);
+    });
+    this.nodes = []
+    this.links = []
+    this.initD3();
+  },
   methods: {
     randomColor () {
       const colors = ['#F4AB87', '#EEC88D', '#76CADF', '#97DA9D',
@@ -658,10 +669,10 @@ export default {
           'code': 0,
           'message': '',
           'data': {
-            'id': '83c8aeb69c1011eb892ad31672d12132',
-            'name': '骨筋膜室综合症',
-            'semantic_type': 'Disease',
-            'labels': ['Concept', 'Disease'],
+            'id': calculateHash(_this.entity),
+            'name': _this.entity,
+            // 'semantic_type': 'Disease',
+            // 'labels': ['Concept', 'Disease'],
             'properties': {
               'status': 1,
               'lastModified': 1618293198,
@@ -675,6 +686,7 @@ export default {
           nodes: _this.nodes,
           links: _this.links
         })
+        addNodesAndLinks(data);
       })
     },
     /**将数据样式调整成作者一样的样式*/

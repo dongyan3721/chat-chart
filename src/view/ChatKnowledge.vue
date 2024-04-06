@@ -3,6 +3,8 @@ import CryptoJS from "crypto-js";
 import Message from "@/view/components/Message.vue";
 import CentralInput from "@/components/CentralInput.vue";
 import KnowledgeMap from "@/view/components/KnowledgeMap.vue";
+import {getUserInputKeywords} from "@/web-api/knowledge-map.js";
+import {shuffleArray} from "@/utils/random.js";
 
 let assistantAnswer = ref('')
 let guestInput = ref('')
@@ -176,6 +178,10 @@ const beginRequestProblemFormIfly = ()=>{
   })
   recordMessageLength.value = messageList.value.length-1;
   sendButtonDisable.value = true
+  getUserInputKeywords(guestInput.value).then(res=>{
+    if (res.rows.length===0) return
+    keywords.value = shuffleArray(res.rows)[0]
+  })
   new TTSRecorder().start();
 
 }
@@ -184,6 +190,8 @@ const beginRequestProblemFormIfly = ()=>{
 let messageList = ref([])
 
 let init = ref(false)
+
+let keywords = ref("竹笋")
 
 </script>
 
@@ -196,7 +204,7 @@ let init = ref(false)
     <el-row class="screen-full">
       <el-col :span="15" class="parent-full">
         <div class="left-knowledge">
-          <KnowledgeMap v-if="init"/>
+          <KnowledgeMap v-if="init" :entity="keywords"/>
         </div>
       </el-col>
       <el-col :span="9">
@@ -220,6 +228,7 @@ let init = ref(false)
 </template>
 
 <style scoped>
+
 .chat-knowledge{
   background-color: rgb(23, 28, 41);
   background-image: url("src/assets/back.png");
