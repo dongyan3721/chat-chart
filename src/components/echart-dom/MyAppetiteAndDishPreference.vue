@@ -190,7 +190,7 @@ onUnmounted(()=>{
       <!--近七日各类营养素摄入的绝对值-->
       <div class="table-title" style="padding: 0 0 10px 10px">
         <chart-histogram-one theme="outline" size="20" fill="#5cd9e8"/>
-        <span>一周内摄入营养物质</span>
+        <span>月内摄入营养物质</span>
       </div>
       <dv-capsule-chart :config="config" style="width: 100%; height: 40%"/>
       <div id="right-intake-finish-ratio-draw"/>

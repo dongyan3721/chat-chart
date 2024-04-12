@@ -3,8 +3,8 @@
     <div class="bg-color-black">
       <div class="d-flex pt-2 pl-2">
         <div class="table-title">
-          <chart-proportion theme="outline" size="20" fill="#5cd9e8"/>
-          <span>健康菜品推荐</span>
+          <chart-histogram-one theme="outline" size="20" fill="#5cd9e8"/>
+          <span>健康食品推荐</span>
         </div>
       </div>
       <div class="d-flex jc-center body-box">
@@ -17,7 +17,7 @@
 
 <script>
 import {DataLine} from "@element-plus/icons-vue";
-import {ChartProportion} from "@icon-park/vue-next";
+import {ChartHistogramOne} from "@icon-park/vue-next";
 import commodities from './data/commodities.json'
 import {shuffleArray} from "@/utils/random.js";
 
@@ -46,7 +46,7 @@ export default {
       }
     };
   },
-  components: {ChartProportion, DataLine},
+  components: {DataLine, ChartHistogramOne},
   mounted() {},
   methods: {}
 };

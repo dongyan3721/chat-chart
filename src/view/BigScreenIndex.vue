@@ -29,7 +29,7 @@ onMounted(()=>{
           <div style="display: flex; justify-content: center">
             <dv-decoration-8 :color="['#568aea', '#000000']" style="width:200px;height:50px;" />
             <div class="title">
-              <span class="title-text">我的健康分析平台</span>
+              <span class="title-text">智能饮食规划</span>
               <dv-decoration-6
                   class="title-bottom"
                   :reverse="true"
@@ -55,15 +55,15 @@ onMounted(()=>{
                 style="width: 500px; text-align: left;background-color: #0f1325;"
             >
               <span class="react-before"></span>
-              <span class="text fw-b">数据分析1</span>
+              <span class="text fw-b"></span>
             </div>
             <div class="react-right ml-3" style="background-color: #0f1325;">
-              <span class="text colorBlue fw-b">数据分析2</span>
+              <span class="text colorBlue fw-b"></span>
             </div>
           </div>
           <div style="width: 40%" class="d-flex">
-            <div class="react-left bg-color-blue mr-3">
-              <span class="text fw-b">数据分析3</span>
+            <div class="react-left mr-3" style="background-color: #0f1325;">
+              <span class="text colorBlue fw-b"></span>
             </div>
             <div class="react-left mr-4" style="width: 500px; background-color: #0f1325; text-align: right;">
               <span class="react-after"></span>
