@@ -76,7 +76,8 @@ client.interceptors.response.use(
 
 export function dishRecognization(data){
     return client({
-        url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token=24.a2c13151bcbb304380047398f72f8501.2592000.1713670889.282335-56654433',
+        // url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token=24.a2c13151bcbb304380047398f72f8501.2592000.1713670889.282335-56654433',
+        url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token=24.d2f6d5b83b491be4d8ce385ace3ea6c7.2592000.1717828640.282335-56654433',
         data,
         method: 'post'
     })

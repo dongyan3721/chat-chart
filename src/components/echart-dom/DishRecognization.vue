@@ -13,7 +13,7 @@ let filename = ref('')
 let dialogUploadFileList = ref([{
   name: 'test.png',
   // url: 'https://n.sinaimg.cn/sinacn23/258/w641h417/20180905/78f7-hitesuy8218027.jpg'
-  url: 'http://localhost:5173/fish.jpg'
+  url: `http://${import.meta.env.VITE_APP_HOST}:${import.meta.env.VITE_APP_PORT}/fish.jpg`
 }])
 
 // 假的...

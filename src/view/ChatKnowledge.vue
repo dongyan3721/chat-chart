@@ -231,7 +231,7 @@ let keywords = ref("竹笋")
 
 .chat-knowledge{
   background-color: rgb(23, 28, 41);
-  background-image: url("src/assets/back.png");
+  background-image: url("http://47.120.49.22:8080/static/image/back.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -7,11 +7,14 @@ import AutoImport from 'unplugin-auto-import/dist/vite.js'
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode})=>{
   const env = loadEnv(mode, './')
+
+  const PORT= env.VITE_APP_PORT
+
   return {
     base: './',
     server: {
       host: '0.0.0.0',
-      port: 5173,
+      port: PORT,
       // proxy: {
       //   [env.VITE_APP_BASE_API]: {
       //     target: 'http://localhost:8080',

@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <div v-if="!isHost" class="avatar-head">
-    <NAvatar src="src/assets/assistant.svg" size="small" round>
+    <NAvatar src="assistant.svg" size="small" round>
       <template #fallback>
         <span>预览失败</span>
       </template>
@@ -17,7 +17,7 @@ const props = defineProps({
     <span style="margin: 0 0 0 10px; font-weight: bold; color: #fafafa">物语小智</span>
   </div>
   <div v-else class="avatar-head">
-    <NAvatar src="src/assets/me.svg" size="small" round>
+    <NAvatar src="me.svg" size="small" round>
       <template #fallback>
         <span>预览失败</span>
       </template>
