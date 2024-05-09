@@ -55,7 +55,7 @@ onMounted(()=>{
                 style="width: 500px; text-align: left;background-color: #0f1325;"
             >
               <span class="react-before"></span>
-              <span class="text fw-b"></span>
+              <span class="text fw-b"><router-link to="/chat">前往问答</router-link></span>
             </div>
             <div class="react-right ml-3" style="background-color: #0f1325;">
               <span class="text colorBlue fw-b"></span>
